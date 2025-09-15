@@ -1,0 +1,7 @@
+#!/bin/bash
+set -x
+aws s3 list-buckets > Resource_Tracker.sh
+aws ec2 describe-instance | jq ".Reservations[].Instances[].Instanceid" | >> Resource_Tracker.sh
+aws lambda list-functions >> Resource_Tracker.sh
+aws iam list-users >> Resource_Tracker.sh
+:wq!
